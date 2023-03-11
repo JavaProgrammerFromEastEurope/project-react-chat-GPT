@@ -18,7 +18,7 @@ const Chat = () => {
 			<MultiChatWindow
 				{...chatProps}
 				style={{ height: "100vh"
-				renderChatHeader={(chat) => <Header />}
+				renderChatHeader={(chat) => <Header />}}
 			/>
 		</div>
 	)
