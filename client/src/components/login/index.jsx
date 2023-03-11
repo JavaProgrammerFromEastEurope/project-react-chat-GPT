@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 import { usePostLoginMutation, usePostSignUpMutation } from "@/state/api";
 
 const Login = ({ setUser, setSecret }) => {
-const [isRegister, setIsRegister] = useState(false);
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-const [triggerLogin, resultLogin] = usePostLoginMutation();
-const [triggerSignUp] = usePostSignUpMutation();
+	const [isRegister, setIsRegister] = useState(false);
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [triggerLogin, resultLogin] = usePostLoginMutation();
+	const [triggerSignUp] = usePostSignUpMutation();
 
-const handleLogin = () => {
-	triggerLogin({ username, password });
-};
+	const handleLogin = () => {
+		triggerLogin({ username, password });
+	};
 
 	const handleRegister = () => {
 		triggerSignUp({ username, password });
 	};
 
 	useEffect(() => {
-		if (resultLogin.data?.response) {
+		if (resultLogin?.data?.response) {
 			setUser(username);
 			setSecret(password);
 		}
@@ -50,14 +50,14 @@ const handleLogin = () => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
-				
+
 				<div className="login-actions">
-					{sRegister ? (
+					{isRegister ? (
 						<button type="button" onclick={handleRegister}>
 							Register
 						</button>
 					) : (
-						<button type="button" onClick={handleLogin}}>
+						<button type="button" onClick={handleLogin}>
 							Login
 						</button>
 						)}
@@ -65,6 +65,6 @@ const handleLogin = () => {
 			</div>
 		</div>
 	)
-};
+}
 
 export default Login;
